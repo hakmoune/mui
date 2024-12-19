@@ -1,13 +1,18 @@
 import "./App.css";
-import { Typography } from "@mui/material";
 import TourCard from "./components/TourCard";
+import { Container } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 
 const App: React.FC = () => {
   return (
-    <>
-      <Typography variant="h3">Test MUI</Typography>
-      <TourCard />
-    </>
+    <Container>
+      <Grid container spacing={5}>
+        <TourCard />
+        <TourCard />
+        <TourCard />
+        <TourCard />
+      </Grid>
+    </Container>
   );
 };
 
