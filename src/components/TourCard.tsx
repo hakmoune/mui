@@ -25,20 +25,28 @@ const theme = createTheme({
   },
 });
 
-const TourCard: React.FC = () => {
+interface TourCardProps {
+  tour: {
+    id: number;
+    name: string;
+    duration: number;
+    rating: number;
+    numberOfReviews: number;
+    price: number;
+    image: string;
+  };
+}
+
+const TourCard: React.FC<TourCardProps> = ({ tour }) => {
   return (
     <Grid size={3}>
       <ThemeProvider theme={theme}>
         <Paper elevation={3}>
-          <img
-            src="https://www.pelago.com/img/products/ID-Indonesia/bali-iconic-instagram-tour/1115-0741_bali-iconic-instagram-tour-indonesia-pelago0.jpg"
-            alt="bali"
-            className="img-card"
-          />
+          <img src={tour.image} alt={tour.name} className="img-card" />
           <Box sx={{ paddingX: 1 }}>
             <Box>
               <Typography variant="subtitle1" component="h2">
-                Immerse into the falls
+                {tour.name}
               </Typography>
             </Box>
 
@@ -54,7 +62,7 @@ const TourCard: React.FC = () => {
                 component="p"
                 sx={{ marginLeft: 0.5 }}
               >
-                5 hours
+                {tour.duration} hours
               </Typography>
             </Box>
 
@@ -67,7 +75,7 @@ const TourCard: React.FC = () => {
             >
               <Rating
                 name="read-only"
-                value={2.5}
+                value={tour.rating}
                 precision={0.5}
                 size="small"
                 readOnly
@@ -77,20 +85,20 @@ const TourCard: React.FC = () => {
                 component="p"
                 sx={{ marginLeft: 0.5 }}
               >
-                2.5
+                {tour.rating}
               </Typography>
               <Typography
                 variant="body3"
                 component="p"
                 sx={{ marginLeft: 1.5 }}
               >
-                (465 reviews)
+                ({tour.numberOfReviews} reviews)
               </Typography>
             </Box>
 
             <Box>
               <Typography variant="h6" component="h3">
-                From C $280
+                From C ${tour.price}
               </Typography>
             </Box>
           </Box>
